@@ -1,0 +1,672 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' data: blob: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://code.jquery.com https://unpkg.com https://d3js.org https://threejs.org https://cdn.plot.ly https://stackpath.bootstrapcdn.com https://maps.googleapis.com https://cdn.tailwindcss.com https://ajax.googleapis.com https://kit.fontawesome.com https://cdn.datatables.net https://maxcdn.bootstrapcdn.com https://code.highcharts.com https://tako-static-assets-production.s3.amazonaws.com https://www.youtube.com https://fonts.googleapis.com https://fonts.gstatic.com https://pfst.cf2.poecdn.net https://puc.poecdn.net https://i.imgur.com https://wikimedia.org https://*.icons8.com https://*.giphy.com https://picsum.photos https://images.unsplash.com; frame-src 'self' https://www.youtube.com https://trytako.com; child-src 'self'; manifest-src 'self'; worker-src 'self'; upgrade-insecure-requests; block-all-mixed-content;">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Accessmart Solutions</title>
+    
+    <!-- Essential Libraries -->
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+<style>
+:root {
+    --primary: #0A1931;
+    --secondary: #FFD700;
+    --accent: #1E3A8A;
+    --text-light: #F5F5F5;
+    --text-dark: #333333;
+    --success: #10B981;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+    background: var(--primary);
+    color: var(--text-light);
+    overflow-x: hidden;
+}
+
+/* Particle Background */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Main Content Container */
+.container {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigation */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 0;
+    background: rgba(10, 25, 49, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--secondary);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    height: 40px;
+    width: auto;
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-links a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+    position: relative;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--secondary);
+    transition: width 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.nav-links a:hover {
+    color: var(--secondary);
+}
+
+/* Mobile Menu Hamburger */
+.hamburger {
+    display: none;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 10px;
+    z-index: 1001;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--text-light);
+    margin: 5px 0;
+    transition: all 0.3s;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* Hidden by default */
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 80px);
+        background: rgba(10, 25, 49, 0.98);
+        flex-direction: column;
+        align-items: center;
+        padding: 50px 0;
+        transition: all 0.3s;
+    }
+
+    .nav-links.active {
+        display: flex; /* Add this line */
+        left: 0; /* Keep existing */
+    }
+}
+
+    .hamburger {
+        display: flex;
+    }
+
+    .hamburger.active span:nth-child(1) {
+        transform: rotate(45deg) translate(8px, 6px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -5px);
+    }
+
+    .nav-links a {
+        margin: 15px 0;
+    }
+}
+
+/* Blog Preview Section */
+.blog-preview {
+    padding: 100px 0;
+    background: linear-gradient(135deg, rgba(10, 25, 49, 0.8), rgba(30, 58, 138, 0.8));
+}
+
+.blog-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    margin-top: 50px;
+}
+
+.blog-card {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    overflow: hidden;
+    transition: all 0.3s;
+}
+
+.blog-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+.blog-image {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.blog-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s;
+}
+
+.blog-card:hover .blog-image img {
+    transform: scale(1.1);
+}
+
+.blog-content {
+    padding: 20px;
+}
+
+.blog-date {
+    color: var(--secondary);
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+.blog-title {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.blog-excerpt {
+    font-size: 0.9rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+    line-height: 1.6;
+}
+
+.read-more {
+    color: var(--secondary);
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: gap 0.3s;
+}
+
+.read-more:hover {
+    gap: 10px;
+}
+
+/* Back-to-Top Button */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    background: var(--secondary);
+    color: var(--primary);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 1000;
+}
+
+.back-to-top.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* WhatsApp Button */
+.whatsapp-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: #25d366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: all 0.3s;
+    z-index: 1000;
+}
+
+.whatsapp-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+/* Footer Styles */
+.footer {
+    background: rgba(10, 25, 49, 0.95);
+    padding: 60px 0 20px;
+    border-top: 1px solid var(--glass-border);
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-section h4 {
+    color: var(--secondary);
+    margin-bottom: 20px;
+    font-size: 1.2rem;
+}
+
+.contact-links li {
+    margin-bottom: 15px;
+}
+
+.contact-links a {
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: color 0.3s;
+}
+
+.contact-links a:hover {
+    color: var(--secondary);
+}
+
+.social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-links a {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    transition: transform 0.3s;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+}
+
+.social-links a:hover {
+    transform: translateY(-3px);
+}
+
+.linkedin { color: #0A66C2; }
+.instagram { color: #E4405F; }
+.twitter { color: #1DA1F2; }
+.facebook { color: #1877F2; }
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 40px;
+    border-top: 1px solid var(--glass-border);
+    margin-top: 40px;
+}
+
+.footer-bottom p {
+    margin: 10px 0;
+    opacity: 0.8;
+    font-size: 0.9rem;
+}
+
+/* Responsive Design for Blog Grid */
+@media (max-width: 1200px) {
+    .blog-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .blog-grid {
+        grid-template-columns: 1fr;
+    }
+}
+</style>
+</head
+<body>
+    <!-- Particle Background -->
+    <div id="particles-js"></div>
+
+    <!-- Navigation --> <nav>
+    <div class="nav-content">
+        <a href="index.html" class="logo">
+            <img src="images/logo.png" alt="Accessmart Logo">
+            Accessmart Solutions
+        </a>
+        <button class="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-links">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#services">Services</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+        <!-- Social Links (Moved Here) -->
+        <div class="social-links desktop-social">
+            <a href="https://www.linkedin.com/company/accessmart-solutions" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            <a href="https://x.com/accessmart" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+            <a href="https://www.instagram.com/accessmartsolutions/" target="_blank" class="instagram"><i class="bx bxl-instagram-alt"></i></a>
+            <a href="https://web.facebook.com/accessmartsolutions" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+        </div>
+    </div>
+</nav>
+    <!-- Blog Preview Section -->
+    <section class="blog-preview">
+        <div class="container">
+            <div class="section-title">
+                <h2>Latest Insights &amp; Updates</h2>
+            </div>
+            <div class="blog-grid">
+                <!-- Blog Post 1 -->
+                <div class="blog-card" data-aos="fade-up">
+                    <div class="blog-image">
+                        <img src="images/digital transformation.jpg" alt="Blog Post 1">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">March 15, 2024</div>
+                        <h3 class="blog-title">Digital Transformation for Nigerian SMEs</h3>
+                        <p class="blog-excerpt">Discover how Nigerian businesses are leveraging digital tools for growth and success in today's market. Learn about the latest trends and strategies.</p>
+                        <a href="blog-post-1.html" class="read-more">Read More <i class="bx bx-right-arrow-alt"></i></a>
+                    </div>
+                </div>
+
+                <!-- Blog Post 2 -->
+                <div class="blog-card" data-aos="fade-up" data-aos-delay="100">
+                    <div class="blog-image">
+                        <img src="images/business-strategy-concept-with-chess-pieces-wooden-cubes-wooden-table-side-view.jpg" alt="Blog Post 2">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">March 10, 2024</div>
+                        <h3 class="blog-title">Effective Business Strategy Planning</h3>
+                        <p class="blog-excerpt">Learn the key elements of creating a successful business strategy in the Nigerian market.</p>
+                        <a href="blog-post-2.html" class="read-more">Read More <i class="bx bx-right-arrow-alt"></i></a>
+                    </div>
+                </div>
+
+                <!-- Blog Post 3 -->
+                <div class="blog-card" data-aos="fade-up" data-aos-delay="200">
+                    <div class="blog-image">
+                        <img src="images/AI benefits.jpg" alt="Blog Post 3">
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">March 5, 2024</div>
+                        <h3 class="blog-title">AI Solutions for Business Growth</h3>
+                        <p class="blog-excerpt">Explore how AI technology is revolutionizing business operations and decision-making.</p>
+                        <a href="blog-post-3.html" class="read-more">Read More <i class="bx bx-right-arrow-alt"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+<!-- Contact Section -->
+            <div class="footer-section">
+                <h4>Contact Us</h4>
+                <ul class="contact-links">
+                    <li><a href="tel:08039479877"><i class="bx bx-phone"></i> 0803 947 9877</a></li>
+                    <li><a href="mailto:accessmartsolutions@gmail.com"><i class="bx bx-envelope"></i> Email Us</a></li>
+                    <li><a href="https://wa.me/2348039479877" target="_blank"><i class="bx bxl-whatsapp"></i> WhatsApp Chat</a></li>
+                    <li><a href="https://forms.gle/VhX8VhWBdLH9YvVS7" target="_blank"><i class="bx bx-notepad"></i> Contact Form</a></li>
+                </ul>
+            </div>
+                <div class="footer-section">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/company/accessmart-solutions" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+                        <a href="https://x.com/accessmart" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+                        <a href="https://www.instagram.com/accessmartsolutions/" target="_blank" class="instagram"><i class="bx bxl-instagram-alt"></i></a>
+                        <a href="https://web.facebook.com/accessmartsolutions" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>© <span id="currentYear"></span> Accessmart Solutions. All rights reserved.</p>
+                <p>Lagos | Abuja | Port Harcourt | Kano | Kaduna | Borno</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Button -->
+    <a href="https://wa.me/2348039479877" class="whatsapp-button" target="_blank">
+        <i class="bx bxl-whatsapp"></i>
+    </a>
+
+    <!-- Back-to-Top Button -->
+    <button class="back-to-top" aria-label="Back to top">
+        <i class="bx bx-up-arrow-alt"></i>
+    </button>
+
+<script>
+// Particle.js Configuration
+particlesJS("particles-js", {
+    particles: {
+        number: {
+            value: 80,
+            density: {
+                enable: true,
+                value_area: 800
+            }
+        },
+        color: {
+            value: "#FFD700"
+        },
+        shape: {
+            type: "circle"
+        },
+        opacity: {
+            value: 0.5,
+            random: false
+        },
+        size: {
+            value: 3,
+            random: true
+        },
+        line_linked: {
+            enable: true,
+            distance: 150,
+            color: "#FFD700",
+            opacity: 0.4,
+            width: 1
+        },
+        move: {
+            enable: true,
+            speed: 2,
+            direction: "none",
+            random: false,
+            straight: false,
+            out_mode: "out",
+            bounce: false
+        }
+    },
+    interactivity: {
+        detect_on: "canvas",
+        events: {
+            onhover: {
+                enable: true,
+                mode: "repulse"
+            },
+            onclick: {
+                enable: true,
+                mode: "push"
+            },
+            resize: true
+        }
+    },
+    retina_detect: true
+});
+
+// Initialize AOS
+AOS.init({
+    duration: 1000,
+    once: true
+});
+
+// Smooth Scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Navigation Background Change on Scroll
+window.addEventListener('scroll', function() {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 50) {
+        nav.style.background = 'rgba(10, 25, 49, 0.95)';
+    } else {
+        nav.style.background = 'rgba(10, 25, 49, 0.8)';
+    }
+});
+
+// Mobile Menu Toggle
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navLinks.classList.toggle('active');
+});
+
+// Close menu on link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+    });
+});
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        hamburger.classList.remove('active');
+        navLinks.classList.remove('active');
+    });
+});
+
+// Back to Top Button
+const backToTop = document.querySelector('.back-to-top');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        backToTop.classList.add('active');
+    } else {
+        backToTop.classList.remove('active');
+    }
+});
+
+backToTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Dynamic Copyright Year
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+</script>
+
+
+</body></html>
